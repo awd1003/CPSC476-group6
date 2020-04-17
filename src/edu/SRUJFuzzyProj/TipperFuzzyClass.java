@@ -3,6 +3,7 @@ package edu.SRUJFuzzyProj;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
+import net.sourceforge.jFuzzyLogic.rule.Variable;
 
 public class TipperFuzzyClass {
 
@@ -21,10 +22,10 @@ public class TipperFuzzyClass {
 		System.out.println(gui.getUserInputFloat());
 		
 //		// Show ruleset
-//		FunctionBlock functionBlock = fis.getFunctionBlock(null);
+		FunctionBlock functionBlock = fis.getFunctionBlock(null);
 //
-//		// Variable tip = functionBlock.getVariable("tip");
-//		// JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
+//		Variable temp = functionBlock.getVariable("temp");
+//		JFuzzyChart.get().chart(temp, temp.getDefuzzifier(), true);
 //
 //		// Set inputs
 //		functionBlock.setVariable("temperature", gui.getUserInputFloat());
@@ -44,9 +45,9 @@ public class TipperFuzzyClass {
 //
 //		// Set inputs
 //		for (double service = 0; service <= 9; service += 1.0)
-//			for (double food = 0; food <= 9; food += 1.0) {
+//			for (double temp = -30; temp <= 150; temp += 1.0) {
 //				// Set inputs
-//				functionBlock.setVariable("service", service);
+//				functionBlock.setVariable("temperature", temp);
 //				functionBlock.setVariable("food", food);
 //
 //				// Evaluate

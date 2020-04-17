@@ -24,19 +24,19 @@ public class Gui {
 	
 	public Gui() {
 		JFrame frame = new JFrame("Flow Layout");
-		String[] monthStrings = {"cold","tempate","hot"}; // get month names
-		SpinnerListModel monthModel = new SpinnerListModel(monthStrings);
-		JSpinner spinner = new JSpinner(monthModel);
+		String[] tempStrings = {"freezing","cold","temperate","warm","hot"}; // get temp descriptions
+		SpinnerListModel tempModel = new SpinnerListModel(tempStrings);
+		JSpinner spinner = new JSpinner(tempModel);
 		JLabel label1,label2;
 		JTextField tempField;
 		JOptionPane getInput = new JOptionPane();
 		userInput = new String(getInput.showInputDialog(null, "Please enter a temperature: "));
 		
-		tempField = new JTextField(userInput, 20);
+		tempField = new JTextField(userInput, 50);
 		JButton button1 = new JButton("button 1");
 		button1.addActionListener(new Listener());
-		label1 = new JLabel("<html>Actual Temperature <br> in degrees<html>");
-		label2 = new JLabel("<html>How you would discribe <br> that temperature<html>");
+		label1 = new JLabel("<html>Actual Temperature <br> in Fahrenheit<html>");
+		label2 = new JLabel("<html>How you would describe <br> that temperature<html>");
 		
 		frame.add(label1);
 		frame.add(label2);
