@@ -17,31 +17,31 @@ public class TipperFuzzyClass {
 			System.err.println("Can't load file: " + fileName);
 		}
 		
-		Gui gui = new Gui();
+		//Gui gui = new Gui();
 		
-		System.out.println(gui.getUserInputFloat());
+		//System.out.println(gui.getUserInputFloat());
 		
 //		// Show ruleset
 		FunctionBlock functionBlock = fis.getFunctionBlock(null);
 //
 //		Variable temp = functionBlock.getVariable("temp");
 //		JFuzzyChart.get().chart(temp, temp.getDefuzzifier(), true);
+
+		// Set inputs
+		functionBlock.setVariable("temperature", 55);
+
+		// Evaluate
+		functionBlock.evaluate();
 //
-//		// Set inputs
-//		functionBlock.setVariable("temperature", gui.getUserInputFloat());
-//
-//		// Evaluate
-//		functionBlock.evaluate();
-//
-//		// Get output
-//		double tip = functionBlock.getVariable("tip").getValue();
-//
-//		// Show
-//		JFuzzyChart.get().chart(functionBlock);
-//
-//		// Show
-//		System.out.println(functionBlock);
-//		System.out.println("TIP:" + functionBlock.getVariable("tip").getValue());
+		// Get output
+		double result = functionBlock.getVariable("result").getValue();
+
+		// Show
+		JFuzzyChart.get().chart(functionBlock);
+
+		// Show
+		System.out.println(functionBlock);
+		System.out.println("RESULT: " + functionBlock.getVariable("result").getValue());
 //
 //		// Set inputs
 //		for (double service = 0; service <= 9; service += 1.0)
