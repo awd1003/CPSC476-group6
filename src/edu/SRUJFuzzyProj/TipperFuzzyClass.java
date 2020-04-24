@@ -6,18 +6,18 @@ import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
 
 public class TipperFuzzyClass {
-
+	
 	public static void main(String[] args) {
 		
 		// Load from 'FCL' file
-		String fileName = "data/HotOrCold.fcl";
-		FIS fis = FIS.load(fileName, true);
+		info.setFilepath("data/HotOrCold.fcl"); 
+		FIS fis = FIS.load(info.getFilepath(), true);
 
 		if (fis == null) { // Error while loading?
-			System.err.println("Can't load file: " + fileName);
+			System.err.println("Can't load file: " + info.getFilepath());
 		}
 		
-		//Gui gui = new Gui();
+		Gui gui = new Gui();
 		
 		//System.out.println(gui.getUserInputFloat());
 		
@@ -26,9 +26,9 @@ public class TipperFuzzyClass {
 //
 //		Variable temp = functionBlock.getVariable("temp");
 //		JFuzzyChart.get().chart(temp, temp.getDefuzzifier(), true);
-
+		
 		// Set inputs
-		functionBlock.setVariable("temperature", 55);
+		functionBlock.setVariable("temperature", info.getTemperature());
 
 		// Evaluate
 		functionBlock.evaluate();
@@ -48,7 +48,7 @@ public class TipperFuzzyClass {
 //			for (double temp = -30; temp <= 150; temp += 1.0) {
 //				// Set inputs
 //				functionBlock.setVariable("temperature", temp);
-//				functionBlock.setVariable("food", food);
+//				functionBlock.set Variable("food", food);
 //
 //				// Evaluate
 //				functionBlock.evaluate();
@@ -61,5 +61,23 @@ public class TipperFuzzyClass {
 //				// Show
 //				System.out.println(service + "\t" + food + "\t" + tip);
 //		}
+	}
+	static void restart(){
+		FIS fis = FIS.load(info.getFilepath() , true);
+		FunctionBlock functionBlock = fis.getFunctionBlock(null);
+		functionBlock.setVariable("temperature", info.getTemperature());
+
+		// Evaluate
+		functionBlock.evaluate();
+		double result = functionBlock.getVariable("result").getValue();
+
+		// Show
+		JFuzzyChart.get().chart(functionBlock);
+
+		// Show
+		System.out.println(functionBlock);
+		System.out.println("RESULT: " + functionBlock.getVariable("result").getValue());
+
+			
 	}
 }

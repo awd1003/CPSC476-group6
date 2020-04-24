@@ -31,9 +31,18 @@ public class Gui {
 		JTextField tempField;
 		JOptionPane getInput = new JOptionPane();
 		userInput = new String(getInput.showInputDialog(null, "Please enter a temperature: "));
+		try
+		{
+			  Double.parseDouble(userInput);
+			  info.setTemperature(Double.parseDouble (userInput));
+		}
+		catch(NumberFormatException e)
+		{
+			System.out.println("wrong type");			
+		}
 		
 		tempField = new JTextField(userInput, 50);
-		JButton button1 = new JButton("button 1");
+		JButton button1 = new JButton("Restart");
 		button1.addActionListener(new Listener());
 		label1 = new JLabel("<html>Actual Temperature <br> in Fahrenheit<html>");
 		label2 = new JLabel("<html>How you would describe <br> that temperature<html>");
