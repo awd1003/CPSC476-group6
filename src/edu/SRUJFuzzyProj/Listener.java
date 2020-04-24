@@ -7,8 +7,10 @@ public class Listener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// What should happen when button is pressed:
-		System.out.println("Button was pressed!");
+		
+
+		// Evaluate
+		TipperFuzzyClass.restart();
 	}
 	
 }
