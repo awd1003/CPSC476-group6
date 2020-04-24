@@ -10,7 +10,7 @@ public class Listener implements ActionListener {
 		
 
 		// Evaluate
-		TipperFuzzyClass.restart();
+		HotOrColdFuzzyClass.restart();
 	}
 	
 }

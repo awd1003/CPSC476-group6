@@ -5,19 +5,20 @@ import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
 
-public class TipperFuzzyClass {
+public class HotOrColdFuzzyClass {
 	
 	public static void main(String[] args) {
 		
-		// Load from 'FCL' file
-		info.setFilepath("data/HotOrCold.fcl"); 
-		FIS fis = FIS.load(info.getFilepath(), true);
-
-		if (fis == null) { // Error while loading?
-			System.err.println("Can't load file: " + info.getFilepath());
-		}
 		
 		Gui gui = new Gui();
+		
+		// Load from 'FCL' file
+		Information.setFilepath("data/HotOrColdCOG.fcl"); 
+		FIS fis = FIS.load(Information.getFilepath(), true);
+		//catches error if loading did not succeed
+		if (fis == null) { 
+			System.err.println("Can't load file: " + Information.getFilepath());
+		}
 		
 		//System.out.println(gui.getUserInputFloat());
 		
@@ -28,7 +29,7 @@ public class TipperFuzzyClass {
 //		JFuzzyChart.get().chart(temp, temp.getDefuzzifier(), true);
 		
 		// Set inputs
-		functionBlock.setVariable("temperature", info.getTemperature());
+		functionBlock.setVariable("temperature", Information.getTemperature());
 
 		// Evaluate
 		functionBlock.evaluate();
@@ -63,9 +64,9 @@ public class TipperFuzzyClass {
 //		}
 	}
 	static void restart(){
-		FIS fis = FIS.load(info.getFilepath() , true);
+		FIS fis = FIS.load(Information.getFilepath() , true);
 		FunctionBlock functionBlock = fis.getFunctionBlock(null);
-		functionBlock.setVariable("temperature", info.getTemperature());
+		functionBlock.setVariable("temperature", Information.getTemperature());
 
 		// Evaluate
 		functionBlock.evaluate();
