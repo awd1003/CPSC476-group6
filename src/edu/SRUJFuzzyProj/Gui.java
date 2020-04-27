@@ -28,7 +28,7 @@ public class Gui {
 		JFrame frame = new JFrame("Flow Layout");
 		JFrame fileFrame = new JFrame("Flow Layout");
 		String[] tempStrings = {"freezing","cold","temperate","warm","hot"}; // get temp descriptions
-		String[] defuzzifyMethods = {"Center of Gravity", "Sugeno"};
+		String[] defuzzifyMethods = {"Center of Gravity", "Center of Gravity Singleton"};
 		SpinnerListModel tempModel = new SpinnerListModel(tempStrings);
 		JSpinner spinner = new JSpinner(tempModel);
 		JLabel fileLabel,label1,label2;
@@ -37,7 +37,7 @@ public class Gui {
 		JComboBox fclFileSelect = new JComboBox(defuzzifyMethods);
 		fclFileSelect.setSelectedIndex(0);
 		
-		userInput = new String(getInput.showInputDialog(null, "Please enter a temperature: "));
+		userInput = new String(getInput.showInputDialog(null, "Please enter a temperature (in Fahrenheit): "));
 		try
 		{
 			  Double.parseDouble(userInput);
