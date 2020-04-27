@@ -15,9 +15,9 @@ END_VAR
 FUZZIFY temperature		// Fuzzify input variable 'temperature': {'freezing', 'cold', 'temperate', 'warm', 'hot'}
 	TERM freezing := (-30, 1) (32, 0) ; 
 	TERM cold := (20, 0) (32, 1) (40, 1) (55, 0) ; 
-	TERM temperate := (50, 0) (60, 1) (70, 1) ;
+	TERM temperate := (50, 0) (60, 1) (70, 0) ;
 	TERM warm := (65, 0) (75, 1) (80, 1) (85, 0) ;
-	TERM hot := (75, 0) (85, 1) (300,1) ;
+	TERM hot := (75, 0) (85, 1) (130,1) ;
 END_FUZZIFY
 
 DEFUZZIFY result			// Defuzzify output variable 'result' : {'sweatPants', 'jeans', 'shorts'}
