@@ -15,14 +15,14 @@ END_VAR
 FUZZIFY temperature		// Fuzzify input variable 'temperature': {'freezing', 'cold', 'temperate', 'warm', 'hot'}
 	TERM freezing := (-30, 1) (32, 0) ; 
 	TERM cold := (20, 0) (32, 1) (40, 1) (55, 0) ; 
-	TERM temperate := (50, 0) (60, 1) (70, 0) ;
+	TERM temperate := (45, 0) (60, 1) (70, 0) ;
 	TERM warm := (65, 0) (75, 1) (80, 1) (85, 0) ;
 	TERM hot := (75, 0) (85, 1) (130,1) ;
 END_FUZZIFY
 
 DEFUZZIFY result			// Defuzzify output variable 'result' : {'sweatPants', 'jeans', 'shorts'}
 	TERM sweatPants := (-40,1) (0,1) (40,0);
-	TERM jeans := (35,0) (55,1) (75,0);
+	TERM jeans := (32,0) (55,1) (75,0);
 	TERM shorts := (60,0) (90,1) (130,1);
 	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
 	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
@@ -34,8 +34,9 @@ RULEBLOCK No1
 	ACCU : MAX;			// Use 'max' accumulation method
 
 	RULE 1 : IF temperature IS freezing OR temperature IS cold THEN result IS sweatPants;
-	RULE 2 : IF temperature IS temperate THEN result IS jeans;
-	RULE 3 : IF temperature IS warm OR temperature IS hot THEN result IS shorts;
+	RULE 2 : IF temperature IS cold OR temperature IS temperate THEN result IS jeans;
+	RULE 3 : IF temperature IS temperate OR temperature IS warm THEN result IS shorts;
+	RULE 4 : IF temperature IS hot THEN result IS shorts;
 	
 END_RULEBLOCK
 
