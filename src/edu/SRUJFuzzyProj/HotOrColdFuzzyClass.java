@@ -5,9 +5,13 @@ import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
 
+import java.util.concurrent.TimeUnit;
+
 public class HotOrColdFuzzyClass {
 	
 	public static void main(String[] args) {
+		
+		
 		
 		
 		Gui gui = new Gui();
@@ -20,27 +24,28 @@ public class HotOrColdFuzzyClass {
 			System.err.println("Can't load file: " + Information.getFilepath());
 		}
 		
-		//System.out.println(gui.getUserInputFloat());
-		
-//		// Show ruleset
+		// Show rule set
 		FunctionBlock functionBlock = fis.getFunctionBlock(null);
+		
 		
 		// Set inputs
 		functionBlock.setVariable("temperature", Information.getTemperature());
 		
 
-		// Evaluate
+		// Evaluate and begin measuring execution time
+		long startTime = System.nanoTime();
 		functionBlock.evaluate();
 
-		// Get output
+		// Get output and complete execution time
 		double result = functionBlock.getVariable("result").getValue();
+		long endTime = System.nanoTime();
+		
 
 		// Show
 		JFuzzyChart.get().chart(functionBlock);
-
-		// Show
-		//System.out.println(functionBlock);
-		//System.out.println("RESULT: " + result);
+		long executionTime = endTime - startTime;
+		long exeTimeSec = executionTime * (10 ^ 9);
+		System.out.println("Execution time: " + executionTime + " nanoseconds.");
 		
 		//'Emulate' monotonic selection by mapping input variable to output variable (i.e., determine what input values produce certain output values) 
 		//and using the output to determine which linguistic variable best fits
@@ -77,10 +82,6 @@ public class HotOrColdFuzzyClass {
 
 		// Show
 		JFuzzyChart.get().chart(functionBlock);
-
-		// Show
-		//System.out.println(functionBlock);
-		//System.out.println("RESULT: " + result);
 		
 		//'Emulate' monotonic selection by mapping input variable to output variable (i.e., determine what input values produce certain output values) 
 		//and using the output to determine which linguistic variable best fits
