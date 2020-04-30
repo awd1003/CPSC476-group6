@@ -24,16 +24,14 @@ public class HotOrColdFuzzyClass {
 		
 //		// Show ruleset
 		FunctionBlock functionBlock = fis.getFunctionBlock(null);
-//
-//		Variable temp = functionBlock.getVariable("temp");
-//		JFuzzyChart.get().chart(temp, temp.getDefuzzifier(), true);
 		
 		// Set inputs
 		functionBlock.setVariable("temperature", Information.getTemperature());
+		
 
 		// Evaluate
 		functionBlock.evaluate();
-//
+
 		// Get output
 		double result = functionBlock.getVariable("result").getValue();
 
@@ -41,27 +39,32 @@ public class HotOrColdFuzzyClass {
 		JFuzzyChart.get().chart(functionBlock);
 
 		// Show
-		System.out.println(functionBlock);
-		System.out.println("RESULT: " + functionBlock.getVariable("result").getValue());
-//
-//		// Set inputs
-//		for (double service = 0; service <= 9; service += 1.0)
-//			for (double temp = -30; temp <= 150; temp += 1.0) {
-//				// Set inputs
-//				functionBlock.setVariable("temperature", temp);
-//				functionBlock.set Variable("food", food);
-//
-//				// Evaluate
-//				functionBlock.evaluate();
-//
-//				// Get output
-//				// double tip = functionBlock.getVariable("tip").getValue();
-//				// Get output
-//				tip = functionBlock.getVariable("tip").getValue();
-//
-//				// Show
-//				System.out.println(service + "\t" + food + "\t" + tip);
-//		}
+		//System.out.println(functionBlock);
+		//System.out.println("RESULT: " + result);
+		
+		//'Emulate' monotonic selection by mapping input variable to output variable (i.e., determine what input values produce certain output values) 
+		//and using the output to determine which linguistic variable best fits
+		if (result < 31) {
+			System.out.println("Definitely wear sweats");
+		}
+		
+		else if (result > 31 && result < 38) {
+			System.out.println("Wear either sweats or jeans");
+		}
+		
+		else if (result > 38 && result < 60) {
+			System.out.println("Definitely wear jeans");
+		}
+		
+		else if (result > 60 && result < 75) {
+			System.out.println("Wear either jeans or shorts");
+		}
+		
+		else if (result > 75) {
+			System.out.println("Definitely wear shorts");
+		}
+
+
 	}
 	static void restart(){
 		FIS fis = FIS.load(Information.getFilepath() , true);
@@ -76,8 +79,30 @@ public class HotOrColdFuzzyClass {
 		JFuzzyChart.get().chart(functionBlock);
 
 		// Show
-		System.out.println(functionBlock);
-		System.out.println("RESULT: " + functionBlock.getVariable("result").getValue());
+		//System.out.println(functionBlock);
+		//System.out.println("RESULT: " + result);
+		
+		//'Emulate' monotonic selection by mapping input variable to output variable (i.e., determine what input values produce certain output values) 
+		//and using the output to determine which linguistic variable best fits
+		if (result < 31) {
+			System.out.println("Definitely wear sweats");
+		}
+		
+		else if (result > 31 && result < 38) {
+			System.out.println("Wear either sweats or jeans");
+		}
+		
+		else if (result > 38 && result < 60) {
+			System.out.println("Definitely wear jeans");
+		}
+		
+		else if (result > 60 && result < 75) {
+			System.out.println("Wear either jeans or shorts");
+		}
+		
+		else if (result > 75) {
+			System.out.println("Definitely wear shorts");
+		}
 
 			
 	}
