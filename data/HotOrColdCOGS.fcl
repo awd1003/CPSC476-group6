@@ -21,9 +21,9 @@ FUZZIFY temperature		// Fuzzify input variable 'temperature': {'freezing', 'cold
 END_FUZZIFY
 
 DEFUZZIFY result			// Defuzzify output variable 'result' : {'sweatPants', 'jeans', 'shorts'}
-	TERM sweatPants := (-40,1) (0,1) (40,0);
-	TERM jeans := (35,0) (55,1) (75,0);
-	TERM shorts := (60,0) (90,1) (130,1);
+	TERM sweatPants := 0;
+	TERM jeans :=  55;
+	TERM shorts := 90;
 	METHOD : COGS;		// Use 'Center Of Gravity Singleton' defuzzification method
 	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
 END_DEFUZZIFY

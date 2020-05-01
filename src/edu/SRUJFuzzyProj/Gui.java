@@ -11,10 +11,11 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Gui {
 	
-	private String userInput;
+	private String userInput; //userinput for the temperature
 	
 	public float toFloat(String s) {
 		return Float.parseFloat(s);
@@ -25,32 +26,35 @@ public class Gui {
 	}
 	
 	public Gui() {
-		JFrame frame = new JFrame("Flow Layout");
-		JFrame fileFrame = new JFrame("Flow Layout");
-		String[] tempStrings = {"freezing","cold","temperate","warm","hot"}; // get temp descriptions
+		final JFrame fileFrame = new JFrame("Hot Or Cold Interface");
 		String[] defuzzifyMethods = {"Center of Gravity", "Center of Gravity Singleton"};
-		SpinnerListModel tempModel = new SpinnerListModel(tempStrings);
-		JSpinner spinner = new JSpinner(tempModel);
-		JLabel fileLabel,label1,label2;
-		JTextField tempField;
+		JLabel fileLabel;
 		JOptionPane getInput = new JOptionPane();
 		JComboBox fclFileSelect = new JComboBox(defuzzifyMethods);
 		fclFileSelect.setSelectedIndex(0);
 		
-		userInput = new String(getInput.showInputDialog(null, "Please enter a temperature (in Fahrenheit): "));
-		try
+		//add buttons and action listeners
+		JButton selectButton = new JButton("Select");
+		JButton restartButton = new JButton("Restart");
+		selectButton.addActionListener(new ActionListener()
 		{
-			  Double.parseDouble(userInput);
-			  Information.setTemperature(Double.parseDouble (userInput));
-		}
-		catch(NumberFormatException e)
-		{
-			System.out.println("wrong type");			
-		}
+			@Override
+		    public void actionPerformed(ActionEvent event) {
+		        HotOrColdFuzzyClass.runProgram();
+		    }
+		});
 		
-		JButton buttonSelect = new JButton("Select");
-//move this to the listener class?
-		fclFileSelect.addActionListener(new Listener()
+		restartButton.addActionListener(new ActionListener()
+		{
+			@Override
+		    public void actionPerformed(ActionEvent event) {
+				fileFrame.dispose();
+				HotOrColdFuzzyClass.acquireInformation();
+			}
+			
+		});
+		//combobox change listener
+		fclFileSelect.addActionListener(new ActionListener()
 		{
 			@Override
 		    public void actionPerformed(ActionEvent event) {
@@ -63,34 +67,32 @@ public class Gui {
 		        }
 		        else if (selectedFile.equals("Center of Gravity Singleton")) {
 		            System.out.println("Singleton!");
-		            Information.setFilepath("data/HotOrColdSugueno.fcl");
+		            Information.setFilepath("data/HotOrColdCOGS.fcl");
 		        }
 		    }
 		});
 		
+		userInput = new String(getInput.showInputDialog(null, "Please enter a temperature (in Fahrenheit): "));
+		try
+		{
+			  Double.parseDouble(userInput);
+			  Information.setTemperature(Double.parseDouble (userInput));
+		}
+		catch(NumberFormatException e)
+		{
+			System.out.println("wrong type");			
+		}
+
+		//collect all the components to the GUI
 		fileLabel = new JLabel("<html>Select Defuzzification Method<html>");
 		fileFrame.add(fileLabel);
 		fileFrame.add(fclFileSelect);
-		fileFrame.add(buttonSelect);
+		fileFrame.add(selectButton);
+		fileFrame.add(restartButton);
+		
 		fileFrame.setLayout(new GridLayout(3, 3));
-		fileFrame.setSize(300, 200);
+		fileFrame.setSize(400, 300);
 		fileFrame.setVisible(true);
-		
-		tempField = new JTextField(userInput, 50);
-		JButton button1 = new JButton("Restart");
-		button1.addActionListener(new Listener());
-		label1 = new JLabel("<html>Actual Temperature <br> in Fahrenheit<html>");
-		label2 = new JLabel("<html>How you would describe <br> that temperature<html>");
-		
-		frame.add(label1);
-		frame.add(label2);
-		frame.add(tempField);
-
-		frame.add(spinner);
-		frame.add(button1);
-		frame.setLayout(new GridLayout(3, 3));
-		frame.setSize(300, 200);
-		frame.setVisible(true);
-	}
+		}
 	
 }
