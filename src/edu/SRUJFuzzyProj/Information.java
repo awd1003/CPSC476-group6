@@ -2,12 +2,12 @@ package edu.SRUJFuzzyProj;
 
 public class Information {
 
-	private static String filepath;
+	private static String filepath = "data/HotOrColdCOG.fcl";
 	private static double temperature;
 	
 	public Information() 
 	{
-		filepath = "data/HotOrCold.fcl";
+		filepath = "data/HotOrColdCOG.fcl";
 		temperature = 0.0;
 	}
 
