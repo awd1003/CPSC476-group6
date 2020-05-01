@@ -43,8 +43,8 @@ public class HotOrColdFuzzyClass {
 
 		// Show
 		JFuzzyChart.get().chart(functionBlock);
+		
 		long executionTime = endTime - startTime;
-		long exeTimeSec = executionTime * (10 ^ 9);
 		System.out.println("Execution time: " + executionTime + " nanoseconds.");
 		
 		//'Emulate' monotonic selection by mapping input variable to output variable (i.e., determine what input values produce certain output values) 

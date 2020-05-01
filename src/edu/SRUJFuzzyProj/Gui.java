@@ -61,8 +61,8 @@ public class Gui {
 		            System.out.println("COG!");
 		            Information.setFilepath("data/HotOrColdCOG.fcl");
 		        }
-		        else if (selectedFile.equals("Sugeno")) {
-		            System.out.println("Sugeno!");
+		        else if (selectedFile.equals("Center of Gravity Singleton")) {
+		            System.out.println("Singleton!");
 		            Information.setFilepath("data/HotOrColdSugueno.fcl");
 		        }
 		    }
